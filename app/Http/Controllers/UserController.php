@@ -17,6 +17,10 @@ class UserController extends Controller
         $this->middleware('guest',[
             'only'=>['create']
         ]);
+        //限流 一个小时内只能提交10次请求
+        $this->middleware('throttle:10,60',[
+            'only'=>['sendResetLinkEmail']
+        ]);
     }
     public function index(){
         $users=User::paginate(6);
