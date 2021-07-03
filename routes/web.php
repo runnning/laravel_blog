@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\StatusesController;
+use App\Http\Controllers\FollowersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,3 +40,6 @@ Route::resource('statuses', StatusesController::class, ['only' => ['store', 'des
 
 Route::get('/users/{user}/followings',[UserController::class,'followings'])->name('users.followings');
 Route::get('/users/{user}/followers',[UserController::class,'followers'])->name('users.followers');
+
+Route::post('/users/followers/{user}',[FollowersController::class,'store'])->name('followers.store');
+Route::delete('/users/followers/{user}',[FollowersController::class,'destroy'])->name('followers.destroy');
